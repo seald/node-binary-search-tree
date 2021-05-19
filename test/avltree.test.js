@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 const chai = require('chai')
 const AVLTree = require('../index').AVLTree
-const _ = require('underscore')
 const customUtils = require('../lib/customUtils')
 
 const { assert } = chai
@@ -183,7 +182,7 @@ describe('AVL tree', () => {
 
       avlt.checkIsAVLT()
       avlt.tree.key.should.equal(10)
-      _.isEqual(avlt.tree.data, ['some data']).should.equal(true)
+      assert.deepStrictEqual(avlt.tree.data, ['some data'])
       assert.isNull(avlt.tree.left)
       assert.isNull(avlt.tree.right)
     })
@@ -196,13 +195,13 @@ describe('AVL tree', () => {
       avlt.insert(3, 'world')
 
       avlt.checkIsAVLT()
-      _.isEqual(avlt.search(3), ['hello', 'world']).should.equal(true)
+      assert.deepStrictEqual(avlt.search(3), ['hello', 'world'])
 
       avlt.insert(12, 'a')
       avlt.insert(12, 'b')
 
       avlt.checkIsAVLT()
-      _.isEqual(avlt.search(12), ['a', 'b']).should.equal(true)
+      assert.deepStrictEqual(avlt.search(12), ['a', 'b'])
     })
 
     it('If uniqueness constraint is enforced, we cannot insert different data for same key', () => {
@@ -218,7 +217,7 @@ describe('AVL tree', () => {
       }
 
       avlt.checkIsAVLT()
-      _.isEqual(avlt.search(3), ['hello']).should.equal(true)
+      assert.deepStrictEqual(avlt.search(3), ['hello'])
 
       avlt.insert(12, 'a')
       try {
@@ -229,7 +228,7 @@ describe('AVL tree', () => {
       }
 
       avlt.checkIsAVLT()
-      _.isEqual(avlt.search(12), ['a']).should.equal(true)
+      assert.deepStrictEqual(avlt.search(12), ['a'])
     })
 
     it('Can insert 0 or the empty string', () => {
@@ -239,7 +238,7 @@ describe('AVL tree', () => {
 
       avlt.checkIsAVLT()
       avlt.tree.key.should.equal(0)
-      _.isEqual(avlt.tree.data, ['some data']).should.equal(true)
+      assert.deepStrictEqual(avlt.tree.data, ['some data'])
 
       avlt = new AVLTree()
 
@@ -247,7 +246,7 @@ describe('AVL tree', () => {
 
       avlt.checkIsAVLT()
       avlt.tree.key.should.equal('')
-      _.isEqual(avlt.tree.data, ['some other data']).should.equal(true)
+      assert.deepStrictEqual(avlt.tree.data, ['some other data'])
     })
 
     it('Auto-balancing insertions', () => {
@@ -350,7 +349,7 @@ describe('AVL tree', () => {
       avlt.checkIsAVLT()
 
       for (i = 0; i < 100; i += 1) {
-        _.isEqual(avlt.search(i), ['some data for ' + i]).should.equal(true)
+        assert.deepStrictEqual(avlt.search(i), ['some data for ' + i])
       }
     })
 
@@ -440,7 +439,7 @@ describe('AVL tree', () => {
 
       function checkavlt () {
         [10, 5, 3, 8, 15, 12, 37].forEach(k => {
-          _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+          assert.deepStrictEqual(avlt.search(k), ['some ' + k])
         })
       }
 
@@ -486,7 +485,7 @@ describe('AVL tree', () => {
 
       avlt.insert(10, 'hello')
       avlt.tree.key.should.equal(10)
-      _.isEqual(avlt.tree.data, ['hello']).should.equal(true)
+      assert.deepStrictEqual(avlt.tree.data, ['hello'])
       avlt.getNumberOfKeys().should.equal(1)
 
       avlt.delete(10)
@@ -516,7 +515,7 @@ describe('AVL tree', () => {
           if (theRemoved.indexOf(k) !== -1) {
             avlt.search(k).length.should.equal(0)
           } else {
-            _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+            assert.deepStrictEqual(avlt.search(k), ['some ' + k])
           }
         })
 
@@ -581,7 +580,7 @@ describe('AVL tree', () => {
       avlt.delete(10)
       avlt.checkIsAVLT()
       avlt.getNumberOfKeys().should.equal(1)
-      _.isEqual(avlt.search(5), ['some 5']).should.equal(true)
+      assert.deepStrictEqual(avlt.search(5), ['some 5'])
       avlt.search(10).length.should.equal(0)
 
       // Root has only one child, on the right
@@ -593,7 +592,7 @@ describe('AVL tree', () => {
       avlt.delete(10)
       avlt.checkIsAVLT()
       avlt.getNumberOfKeys().should.equal(1)
-      _.isEqual(avlt.search(15), ['some 15']).should.equal(true)
+      assert.deepStrictEqual(avlt.search(15), ['some 15'])
       avlt.search(10).length.should.equal(0)
     })
 
@@ -608,7 +607,7 @@ describe('AVL tree', () => {
           if (theRemoved.indexOf(k) !== -1) {
             avlt.search(k).length.should.equal(0)
           } else {
-            _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+            assert.deepStrictEqual(avlt.search(k), ['some ' + k])
           }
         })
 
@@ -666,7 +665,7 @@ describe('AVL tree', () => {
       avlt.checkIsAVLT()
       avlt.getNumberOfKeys().should.equal(6);
       [5, 3, 8, 15, 12, 37].forEach(k => {
-        _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(avlt.search(k), ['some ' + k])
       })
       avlt.search(10).length.should.equal(0)
 
@@ -680,7 +679,7 @@ describe('AVL tree', () => {
       avlt.checkIsAVLT()
       avlt.getNumberOfKeys().should.equal(6);
       [5, 8, 15, 12, 37, 42].forEach(k => {
-        _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(avlt.search(k), ['some ' + k])
       })
       avlt.search(10).length.should.equal(0)
     })
@@ -698,7 +697,7 @@ describe('AVL tree', () => {
       avlt.checkIsAVLT()
       avlt.getNumberOfKeys().should.equal(15);
       [10, 3, 1, 4, 8, 6, 9, 15, 12, 11, 13, 20, 19, 42, 3.5].forEach(k => {
-        _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(avlt.search(k), ['some ' + k])
       })
       avlt.search(5).length.should.equal(0)
 
@@ -712,7 +711,7 @@ describe('AVL tree', () => {
       avlt.checkIsAVLT()
       avlt.getNumberOfKeys().should.equal(15);
       [10, 3, 1, 4, 8, 6, 9, 5, 12, 11, 13, 20, 19, 42, 12.5].forEach(k => {
-        _.isEqual(avlt.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(avlt.search(k), ['some ' + k])
       })
       avlt.search(15).length.should.equal(0)
     })
@@ -1020,7 +1019,7 @@ describe('AVL tree', () => {
 
       // Number of key and number of pieces of data match
       avlt.getNumberOfKeys().should.equal(Object.keys(data).length)
-      _.reduce(_.map(data, d => d.length), (memo, n) => memo + n, 0).should.equal(avltDataElems.length)
+      Object.keys(data).map(k => data[k].length).reduce((memo, n) => memo + n, 0).should.equal(avltDataElems.length)
 
       // Compare data
       Object.keys(data).forEach(key => {

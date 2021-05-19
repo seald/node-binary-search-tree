@@ -6,7 +6,8 @@ written by Louis Chatriot for storing indexes
 in [nedb](https://github.com/louischatriot/nedb).
 
 Since the original maintainer doesn't support these packages anymore, we forked
-them and maintain them for the needs of [Seald](https://www.seald.io).
+them (here is [nedb](https://github.com/seald/nedb)) and maintain them for the
+needs of [Seald](https://www.seald.io).
 
 Two implementations of binary search
 tree: [basic](http://en.wikipedia.org/wiki/Binary_search_tree)

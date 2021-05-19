@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 const chai = require('chai')
 const BinarySearchTree = require('../index').BinarySearchTree
-const _ = require('underscore')
 const customUtils = require('../lib/customUtils')
 
 const { assert } = chai
@@ -214,7 +213,7 @@ describe('Binary search tree', () => {
 
       bst.checkIsBST()
       bst.key.should.equal(10)
-      _.isEqual(bst.data, ['some data']).should.equal(true)
+      assert.deepStrictEqual(bst.data, ['some data'])
       assert.isNull(bst.left)
       assert.isNull(bst.right)
     })
@@ -228,7 +227,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       assert.isNull(bst.right)
       bst.left.key.should.equal(7)
-      _.isEqual(bst.left.data, ['some other data']).should.equal(true)
+      assert.deepStrictEqual(bst.left.data, ['some other data'])
       assert.isNull(bst.left.left)
       assert.isNull(bst.left.right)
     })
@@ -242,7 +241,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       assert.isNull(bst.left)
       bst.right.key.should.equal(14)
-      _.isEqual(bst.right.data, ['some other data']).should.equal(true)
+      assert.deepStrictEqual(bst.right.data, ['some other data'])
       assert.isNull(bst.right.left)
       assert.isNull(bst.right.right)
     })
@@ -258,13 +257,13 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       assert.isNull(bst.right)
       bst.left.key.should.equal(7)
-      _.isEqual(bst.left.data, ['some other data']).should.equal(true)
+      assert.deepStrictEqual(bst.left.data, ['some other data'])
 
       bst.left.left.key.should.equal(1)
-      _.isEqual(bst.left.left.data, ['hello']).should.equal(true)
+      assert.deepStrictEqual(bst.left.left.data, ['hello'])
 
       bst.left.right.key.should.equal(9)
-      _.isEqual(bst.left.right.data, ['world']).should.equal(true)
+      assert.deepStrictEqual(bst.left.right.data, ['world'])
     })
 
     it('Recursive insertion on the right works', () => {
@@ -278,13 +277,13 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       assert.isNull(bst.left)
       bst.right.key.should.equal(17)
-      _.isEqual(bst.right.data, ['some other data']).should.equal(true)
+      assert.deepStrictEqual(bst.right.data, ['some other data'])
 
       bst.right.left.key.should.equal(11)
-      _.isEqual(bst.right.left.data, ['hello']).should.equal(true)
+      assert.deepStrictEqual(bst.right.left.data, ['hello'])
 
       bst.right.right.key.should.equal(19)
-      _.isEqual(bst.right.right.data, ['world']).should.equal(true)
+      assert.deepStrictEqual(bst.right.right.data, ['world'])
     })
 
     it('If uniqueness constraint not enforced, we can insert different data for same key', () => {
@@ -296,14 +295,14 @@ describe('Binary search tree', () => {
 
       bst.checkIsBST()
       bst.left.key.should.equal(3)
-      _.isEqual(bst.left.data, ['hello', 'world']).should.equal(true)
+      assert.deepStrictEqual(bst.left.data, ['hello', 'world'])
 
       bst.insert(12, 'a')
       bst.insert(12, 'b')
 
       bst.checkIsBST()
       bst.right.key.should.equal(12)
-      _.isEqual(bst.right.data, ['a', 'b']).should.equal(true)
+      assert.deepStrictEqual(bst.right.data, ['a', 'b'])
     })
 
     it('If uniqueness constraint is enforced, we cannot insert different data for same key', () => {
@@ -320,7 +319,7 @@ describe('Binary search tree', () => {
 
       bst.checkIsBST()
       bst.left.key.should.equal(3)
-      _.isEqual(bst.left.data, ['hello']).should.equal(true)
+      assert.deepStrictEqual(bst.left.data, ['hello'])
 
       bst.insert(12, 'a')
       try {
@@ -332,7 +331,7 @@ describe('Binary search tree', () => {
 
       bst.checkIsBST()
       bst.right.key.should.equal(12)
-      _.isEqual(bst.right.data, ['a']).should.equal(true)
+      assert.deepStrictEqual(bst.right.data, ['a'])
     })
 
     it('Can insert 0 or the empty string', () => {
@@ -342,7 +341,7 @@ describe('Binary search tree', () => {
 
       bst.checkIsBST()
       bst.key.should.equal(0)
-      _.isEqual(bst.data, ['some data']).should.equal(true)
+      assert.deepStrictEqual(bst.data, ['some data'])
       assert.isNull(bst.left)
       assert.isNull(bst.right)
 
@@ -352,7 +351,7 @@ describe('Binary search tree', () => {
 
       bst.checkIsBST()
       bst.key.should.equal('')
-      _.isEqual(bst.data, ['some other data']).should.equal(true)
+      assert.deepStrictEqual(bst.data, ['some other data'])
       assert.isNull(bst.left)
       assert.isNull(bst.right)
     })
@@ -394,7 +393,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
 
       for (i = 0; i < 100; i += 1) {
-        _.isEqual(bst.search(i), ['some data for ' + i]).should.equal(true)
+        assert.deepStrictEqual(bst.search(i), ['some data for ' + i])
       }
     })
 
@@ -484,7 +483,7 @@ describe('Binary search tree', () => {
 
       function checkBst () {
         [10, 5, 3, 8, 15, 12, 37].forEach(k => {
-          _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+          assert.deepStrictEqual(bst.search(k), ['some ' + k])
         })
       }
 
@@ -530,7 +529,7 @@ describe('Binary search tree', () => {
 
       bst.insert(10, 'hello')
       bst.key.should.equal(10)
-      _.isEqual(bst.data, ['hello']).should.equal(true)
+      assert.deepStrictEqual(bst.data, ['hello'])
       bst.getNumberOfKeys().should.equal(1)
 
       bst.delete(10)
@@ -559,7 +558,7 @@ describe('Binary search tree', () => {
           if (k === theRemoved) {
             bst.search(k).length.should.equal(0)
           } else {
-            _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+            assert.deepStrictEqual(bst.search(k), ['some ' + k])
           }
         })
 
@@ -604,7 +603,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       bst.getNumberOfKeys().should.equal(3);
       [5, 3, 6].forEach(k => {
-        _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(bst.search(k), ['some ' + k])
       })
       bst.search(10).length.should.equal(0)
 
@@ -618,7 +617,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       bst.getNumberOfKeys().should.equal(3);
       [15, 13, 16].forEach(k => {
-        _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(bst.search(k), ['some ' + k])
       })
       bst.search(10).length.should.equal(0)
     })
@@ -641,7 +640,7 @@ describe('Binary search tree', () => {
           if (k === theRemoved) {
             bst.search(k).length.should.equal(0)
           } else {
-            _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+            assert.deepStrictEqual(bst.search(k), ['some ' + k])
           }
         })
 
@@ -669,7 +668,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       bst.getNumberOfKeys().should.equal(6);
       [5, 3, 8, 15, 12, 37].forEach(k => {
-        _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(bst.search(k), ['some ' + k])
       })
       bst.search(10).length.should.equal(0)
     })
@@ -686,7 +685,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       bst.getNumberOfKeys().should.equal(14);
       [10, 3, 1, 4, 8, 6, 9, 15, 12, 11, 13, 20, 19, 42].forEach(k => {
-        _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(bst.search(k), ['some ' + k])
       })
       bst.search(5).length.should.equal(0)
 
@@ -699,7 +698,7 @@ describe('Binary search tree', () => {
       bst.checkIsBST()
       bst.getNumberOfKeys().should.equal(14);
       [10, 5, 3, 1, 4, 8, 6, 9, 12, 11, 13, 20, 19, 42].forEach(k => {
-        _.isEqual(bst.search(k), ['some ' + k]).should.equal(true)
+        assert.deepStrictEqual(bst.search(k), ['some ' + k])
       })
       bst.search(15).length.should.equal(0)
     })
@@ -986,7 +985,7 @@ describe('Binary search tree', () => {
 
       // Number of key and number of pieces of data match
       bst.getNumberOfKeys().should.equal(Object.keys(data).length)
-      _.reduce(_.map(data, d => d.length), (memo, n) => memo + n, 0).should.equal(bstDataElems.length)
+      Object.keys(data).map(k => data[k].length).reduce((memo, n) => memo + n, 0).should.equal(bstDataElems.length)
 
       // Compare data
       Object.keys(data).forEach(key => {

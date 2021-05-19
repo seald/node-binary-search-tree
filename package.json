@@ -29,9 +29,6 @@
     "type": "git",
     "url": "git@github.com:seald/node-binary-search-tree.git"
   },
-  "dependencies": {
-    "underscore": "^1.13.1"
-  },
   "devDependencies": {
     "chai": "^4.3.4",
     "mocha": "^8.4.0",
