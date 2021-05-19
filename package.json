@@ -6,6 +6,10 @@
     "email": "tim@seald.io",
     "url": "https://www.seald.io/"
   },
+  "files": [
+    "lib/**/*.js",
+    "index.js"
+  ],
   "contributors": [
     {
       "name": "Louis Chatriot",
